@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hm11.5</title>
+    <style>
+        .wrap {
+            height: 300px;
+            width: 500px;
+            margin: 0 auto;
+            background-color: lightblue;
+            text-align: center;
+        }
+
+        .wrap::before {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+
+        .list {
+            list-style: none;
+            display: inline-block;
+            margin-left: -10px;
+            padding: 0;
+            vertical-align: middle;
+        }
+
+        .list .item {
+            float: left;
+            background-color: pink;
+            height: 42px;
+            width: 72px;
+            margin-left: 10px;
+            border-radius: 5px;
+            line-height: 42px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <ul class="list">
+            <li class="item">button1</li>
+            <li class="item">button2</li>
+            <li class="item">button3</li>
+        </ul>
+    </div>
+</body>
+</html>
