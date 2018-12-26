@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hm12.1</title>
+    <style>
+        .wrap {
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            border: 1px solid gray;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .section::after,
+        .section::before {
+            position: absolute;
+            display: block;
+            content: '';
+        }
+
+        .angel1::after {
+            border-top: 13px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 13px solid gray;
+            border-left: 15px solid transparent;
+            top: -26px;
+            left: 10px;
+        }
+
+        .angel2::after {
+            border-top: 12px solid red;
+            border-right: 12px solid red;
+            border-bottom: 12px solid transparent;
+            border-left: 12px solid transparent;
+            top: 0;
+            right: 0;
+        }
+
+        .angel3::after {
+            border-top: 13px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 13px solid white;
+            border-left: 15px solid transparent;
+            top: -25px;
+            left: 10px;
+        }
+
+        .angel3::before {
+            border-top: 13px solid transparent;
+            border-right: 15px solid transparent;
+            border-bottom: 13px solid gray;
+            border-left: 15px solid transparent;
+            top: -26px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="section angel1"></div>
+        <div class="section angel2"></div>
+        <div class="section angel3"></div>
+    </div>
+</body>
+</html>
