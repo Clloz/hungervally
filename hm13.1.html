@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dota2 Site</title>
+    <link rel="stylesheet" href="./font-awesome.min.css">
+    <style>
+        /* reset */
+        body,
+        h1,
+        h2,
+        h3,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* common css */
+        body {
+            font: 14px/1.5 Arial;
+            color: #333;
+            font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        .h4,
+        h4 {
+            font-size: 22px;
+        }
+
+        .container {
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 150px 0;
+            text-align: center;
+        }
+
+        section:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.75;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 20px 40px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #f7ba3e;
+            border-radius: 4px;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            opacity: 1;
+        }
+
+        .layout {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        @font-face {
+            font-family: 'sailregular';
+            src: url('./font/sail-regular-webfont.woff2') format('woff2'),
+                url('./font/sail-regular-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* page css */
+        /* nav */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 25px 0;
+            border: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .navbar .title {
+            float: left;
+        }
+
+        .navbar .title>a {
+            float: left;
+            height: 50px;
+            padding: 15px;
+            font-family: sailregular;
+            font-size: 2em;
+            color: #f7ba3e;
+            line-height: 20px;
+        }
+
+        .nav {
+            float: right;
+        }
+
+        .nav>li {
+            float: left;
+        }
+
+        .nav>li>a {
+            position: relative;
+            display: block;
+            padding: 15px 15px;
+            font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 20px;
+            text-transform: uppercase;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        /* header */
+        header {
+            position: relative;
+            color: #fff;
+            text-align: center;
+            background: #fff center center / cover no-repeat url('./img/dota.png');
+            background-attachment: scroll;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: block;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        header>.container {
+            position: relative;
+        }
+
+        .intro {
+            padding: 300px 0 200px;
+        }
+
+        .intro .head {
+            font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-style: italic;
+            font-size: 40px;
+            line-height: 40px;
+            margin-bottom: 25px;
+            color: #cc452d;
+            font-family: sailregular;
+        }
+
+        .intro .lead {
+            font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 75px;
+            line-height: 75px;
+            margin-bottom: 50px;
+        }
+
+        .intro .button {
+            padding: 20px 40px;
+        }
+
+        /* section services */
+        section .row>h2 {
+            margin-top: 0px;
+            margin-bottom: 15px;
+            font-family: sailregular;
+            font-size: 40px;
+            font-weight: 400;
+            color: #cc452d;
+        }
+
+        section .row>h3 {
+            font-size: 16px;
+            font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-transform: none;
+            font-style: italic;
+            font-weight: 400;
+            margin-bottom: 75px;
+        }
+
+        section .row>.item {
+            position: relative;
+            float: left;
+            width: 33.33333333%;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        /* section hero */
+        section .hero-link {
+            display: block;
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        section .hero-link>img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        section .hero-caption {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            text-align: center;
+            padding: 25px;
+        }
+
+        section .hero-hover {
+            background: rgba(254, 209, 54, .9);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all ease .5s;
+            -webkit-transition: all ease .5s;
+            -moz-transition: all ease .5s;
+        }
+
+        section .hero-hover:hover {
+            opacity: 1;
+        }
+
+        section .hero-hover .hover-content {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            font-size: 20px;
+            text-align: center;
+            top: 50%;
+            margin-top: -12px;
+            color: #fff;
+        }
+
+        section.hero .item {
+            margin: 0 0 30px;
+        }
+
+        .hero-caption h4 {
+            font-family: sailregular;
+            color: #cc452d;
+            font-weight: 400;
+        }
+
+        section.service .row>.item span {
+            color: #cc452d;
+        }
+
+        /* section bg */
+        section.bg .timeline {
+            position: relative;
+        }
+
+        section.bg .timeline>li {
+            position: relative;
+            min-height: 150px;
+            margin-bottom: 100px;
+        }
+
+        section.bg .timeline:before {
+            top: 0;
+            bottom: 0;
+            position: absolute;
+            content: "";
+            width: 2px;
+            background-color: #f1f1f1;
+            left: 50%;
+            margin-left: -1.5px;
+        }
+
+        section.bg .timeline>li .timeline-panel {
+            width: 41%;
+            float: right;
+            padding: 0 20px 20px;
+            position: relative;
+            text-align: left;
+        }
+
+        section.bg .timeline>li:nth-child(odd) .timeline-panel {
+            float: left;
+            text-align: rightl
+        }
+
+        section.bg .timeline>li .timeline-panel h4 {
+            margin-bottom: 10px;
+            margin-top: 0;
+            font-family: sailregular;
+            color: #cc452d;
+            font-weight: 400;
+        }
+
+        section.bg .timeline>li .timeline-panel p {
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+
+        .timeline-img {
+            position: absolute;
+            background-color: #fed136;
+            color: #fff;
+            border-radius: 100%;
+            border: 7px solid #f1f1f1;
+            text-align: center;
+            width: 150px;
+            height: 150px;
+            margin-left: -75px;
+            left: 50%;
+        }
+
+        .timeline-img img {
+            display: block;
+            width: 136px;
+            height: 136px;
+            border-radius: 50%;
+        }
+
+        /* section contact */
+        section.contact {
+            background-color: #222;
+            background-image: url("https://img.dota2.com.cn/maps/88/c6/88c68476d84f35bfbd5c459b2920a14a1532493605.jpg");
+            background-position: center top;
+            background-repeat: no-repeat;
+            padding-top: 350px;
+        }
+
+        section.contact .half {
+            float: left;
+            width: 50%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        section.contact .half .form-group {
+            margin-bottom: 25px;
+        }
+
+        section.contact .half .form-control {
+            display: block;
+            width: 100%;
+            height: auto;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            resize: none;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+
+        /* footer */
+        footer {
+            padding: 25px 0;
+            text-align: center;
+        }
+        footer .list-inline {
+            margin-left: -5px;
+            text-align: center;
+        }
+        footer .list-inline a {
+            display: block;
+            background-color: #222;
+            height: 40px;
+            width: 40px;
+            border-radius: 100%;
+            font-size: 20px;
+            line-height: 40px;
+            color: #fff;
+            outline: 0;
+            -webkit-transition: all .3s;
+            -moz-transition: all .3s;
+            transition: all .3s;
+        }
+
+        footer .list-inline>li {
+            display: inline-block;
+        }
+
+        /* media */
+        @media screen and (min-width: 1200px) {
+            .container {
+                width: 1170px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="title">
+                <a href="#">Dota2 Information</a>
+            </div>
+            <div class="menu clearfix">
+                <ul class="nav">
+                    <li><a href="#">Heros</a></li>
+                    <li><a href="#">Items</a></li>
+                    <li><a href="#">Maps</a></li>
+                    <li><a href="#">Team</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div class="container">
+            <div class="intro">
+                <div class="head">Welcome to Dota2</div>
+                <div class="lead">This is your Show Time!</div>
+                <div class="button">Play Now!</div>
+            </div>
+        </div>
+    </header>
+    <section class="service">
+        <div class="container">
+            <div class="row">
+                <h2>Dota2 Plus</h2>
+                <h3>Provide professional Dota2 data analysis</h3>
+            </div>
+            <div class="row clearfix">
+                <div class="item">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-gamepad fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4>ABILITY SUGGESTIONSHERO PROGRESSION</h4>
+                    <p>The Plus Assistant will display a suggested ability to select at each level. Suggestions are
+                        based on hero lineups, the lane you are in, and which abilities you've already selected. </p>
+                </div>
+                <div class="item">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-tags fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4>HERO SUGGESTIONS</h4>
+                    <p>Don't know which hero to pick? Look for the Assistant's suggestions, which take into account the
+                        heroes your allies and enemies have selected to give you a set of options to choose from.</p>
+                </div>
+                <div class="item">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-support fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4>GLOBAL RANK TRENDS</h4>
+                    <p>See pick/win rates for Talents as well as trends for hero picks/bans/wins in each skill bracket.
+                        Compare how you perform with any hero (kills, deaths, GPM/XPM, etc.) to how other brackets
+                        perform to see what you need to improve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hero">
+        <div class="container clearfix">
+            <div class="row">
+                <h2>Heros</h2>
+                <h3>Give you the Hero's information</h3>
+            </div>
+            <div class="row">
+                <div class="item">
+                    <a class="hero-link" href="#">
+                        <div class="hero-hover">
+                            <div class="hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="https://www.dota2.com.cn/images/heroes/morphling_full.png" alt="morph">
+                    </a>
+                    <div class="hero-caption">
+                        <h4>morphling</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <a class="hero-link" href="#">
+                        <div class="hero-hover">
+                            <div class="hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="https://www.dota2.com.cn/images/heroes/templar_assassin_full.png" alt="templar_assassin">
+                    </a>
+                    <div class="hero-caption">
+                        <h4>Templar Assassin</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <a class="hero-link" href="#">
+                        <div class="hero-hover">
+                            <div class="hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="https://www.dota2.com.cn/images/heroes/nevermore_full.png" alt="nevermore">
+                    </a>
+                    <div class="hero-caption">
+                        <h4>Nevermore</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <a class="hero-link" href="#">
+                        <div class="hero-hover">
+                            <div class="hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="https://www.dota2.com.cn/images/heroes/lina_full.png" alt="lina">
+                    </a>
+                    <div class="hero-caption">
+                        <h4>Lina</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <a class="hero-link" href="#">
+                        <div class="hero-hover">
+                            <div class="hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="https://www.dota2.com.cn/images/heroes/crystal_maiden_full.png" alt="crystal_maiden">
+                    </a>
+                    <div class="hero-caption">
+                        <h4>Ccrystal Maiden</h4>
+                    </div>
+                </div>
+                <div class="item">
+                    <a class="hero-link" href="#">
+                        <div class="hero-hover">
+                            <div class="hover-content">
+                                <i class="fa fa-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="https://www.dota2.com.cn/images/heroes/invoker_full.png" alt="invoker">
+                    </a>
+                    <div class="hero-caption">
+                        <h4>Invoker</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg">
+        <div class="container">
+            <div class="row">
+                <h2>Hero's Background Story</h2>
+                <h3>Introduce the hero's Background story</h3>
+            </div>
+            <div class="row">
+                <div class="s-list">
+                    <ul class="timeline">
+                        <li class="clearfix">
+                            <div class="timeline-img">
+                                <img src="https://www.dota2.com.cn/images/heroes/morphling_vert.jpg" alt="morphling">
+                            </div>
+                            <div class="timeline-panel">
+                                <h4>Morphling</h4>
+                                <p>Morphling is an elemental power at one with the tides of the ocean, the capricious
+                                    yet constrained rush of rivers, the placid calm of standing water. Neither male nor
+                                    female, Morphling can take on any form.</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="timeline-img">
+                                <img src="https://www.dota2.com.cn/images/heroes/phantom_assassin_vert.jpg" alt="phantom_assassin">
+                            </div>
+                            <div class="timeline-panel">
+                                <h4>Phantom Assassin</h4>
+                                <p>Through a process of divination, children are selected for upbringing by the Sisters
+                                    of the Veil, an order that considers assassination a sacred part of the natural
+                                    order. The Veiled Sisters identify targets through meditation and oracular
+                                    utterances. </p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="timeline-img">
+                                <img src="https://www.dota2.com.cn/images/heroes/drow_ranger_vert.jpg" alt="drow_ranger">
+                            </div>
+                            <div class="timeline-panel">
+                                <h4>Drow Ranger</h4>
+                                <p>Drow Ranger's given name is Traxex--a name well suited to the short, trollish,
+                                    rather repulsive Drow people. But Traxex herself is not a Drow. Her parents were
+                                    travelers in a caravan set upon by bandits, whose noisy slaughter of innocents
+                                    roused the ire of the quiet Drow people.</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="timeline-img">
+                                <img src="https://www.dota2.com.cn/images/heroes/ember_spirit_vert.jpg" alt="ember_spirit">
+                            </div>
+                            <div class="timeline-panel">
+                                <h4>Ember Spirit</h4>
+                                <p>Storm Spirit is literally a force of nature--the wild power of wind and weather,
+                                    bottled in human form. And a boisterous, jovial, irrepressible form it is! As jolly
+                                    as a favorite uncle, he injects every scene with crackling energy. </p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="timeline-img">
+                                <img src="https://www.dota2.com.cn/images/heroes/dragon_knight_vert.jpg" alt="dragon_knight">
+                            </div>
+                            <div class="timeline-panel">
+                                <h4>Dragon Knight</h4>
+                                <p>After years on the trail of a legendary Eldwurm, the Knight Davion found himself
+                                    facing a disappointing foe: the dreaded Slyrak had grown ancient and frail, its
+                                    wings tattered, its few remaining scales stricken with scale-rot.</p>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="timeline-img">
+                                <img src="https://www.dota2.com.cn/images/heroes/antimage_vert.jpg" alt="morphlingantimage">
+                            </div>
+                            <div class="timeline-panel">
+                                <h4>Antimage</h4>
+                                <p>The monks of Turstarkuri watched the rugged valleys below their mountain monastery
+                                    as wave after wave of invaders swept through the lower kingdoms. Ascetic and
+                                    pragmatic, in their remote monastic eyrie they remained aloof from mundane strife.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="contact">
+        <div class="container">
+            <div class="row">
+                <!-- <h2>Contact</h2>
+                <h3>Give me your message</h3> -->
+            </div>
+            <div class="row">
+                <form class="clearfix" action="/send">
+                    <div class="half">
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="NAME">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="RANK">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" placeholder="COUNTRY">
+                        </div>
+                    </div>
+                    <div class="half">
+                        <div class="form-group"><textarea class="form-control" name="" id="" cols="30" rows="10"
+                                placeholder="YOUR INTRODUCTION"></textarea></div>
+                    </div>
+                    <div>
+                        <div class="button">submit</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <ul class="list-inline clearfix">
+                    <li><a href="#"><i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
